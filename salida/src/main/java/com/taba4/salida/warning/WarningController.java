@@ -34,11 +34,11 @@ class WarningController {
         sseEmitters.warnEqk(warData);
     }
 
-    /*
+
     @GetMapping("/test")
     public long test() {
-        return emitterRepository.test();
+        return sseEmitters.test();
     }
-     */
+
 
 }

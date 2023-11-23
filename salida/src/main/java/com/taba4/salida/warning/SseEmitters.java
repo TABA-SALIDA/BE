@@ -58,7 +58,7 @@ public class SseEmitters {
         });
     }
 
-    /*
+
     public long test() {
         long dummydata = 3;
         emitters.forEach(emitter -> {
@@ -72,6 +72,6 @@ public class SseEmitters {
         });
         return dummydata;
     }
-     */
+
 
 }
