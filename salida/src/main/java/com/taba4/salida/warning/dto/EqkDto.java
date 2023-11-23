@@ -1,10 +1,12 @@
 package com.taba4.salida.warning.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@AllArgsConstructor
 @Getter
 public class EqkDto {
-    private float latitude;
-    private float longitude;
-    private float magnitude;
+    private double latitude;
+    private double longitude;
+    private double magnitude;
 }
