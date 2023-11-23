@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class EqkDto {
-    private Long latitude;
-    private Long longitude;
+    private float latitude;
+    private float longitude;
+    private float magnitude;
 }
