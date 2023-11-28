@@ -1,7 +1,7 @@
 from flask import Flask
 import pyodbc
 
-connection_string = 'DSN=tibero-test;UID=sys;PWD=tibero'
+connection_string = 'DSN=MYCODE;UID=sys;PWD=tibero'
 connection = pyodbc.connect(connection_string)
 cursor = connection.cursor()
 
