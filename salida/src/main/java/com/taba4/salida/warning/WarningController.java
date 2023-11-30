@@ -1,10 +1,11 @@
 package com.taba4.salida.warning;
 
 import com.taba4.salida.warning.dto.EqkDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-
+@Slf4j
 @RestController
 @RequestMapping("/warn")
 class WarningController {
@@ -24,7 +25,8 @@ class WarningController {
 
     @PostMapping("/eqk")
     public void warnEqk(@RequestBody EqkDto eqkData) {
-
+        log.info("new eqk data request");
+        log.info("data = {}, {}, {}", eqkData.getLatitude(), eqkData.getLongitude(), eqkData.getMagnitude());
         sseEmitters.warnEqk(eqkData);
     }
 
