@@ -39,7 +39,9 @@ def insert_data_from_csv(file_path):
                             ?,
                             ?, 
                             ?, 
-                            'earthquack')
+                            'earthquack',
+                            SYSDATE
+                            )
                             '''
             values = [row['title'], row['content'], row['summary'], row['link']]
             cursor.execute(insert_query, values)
@@ -67,6 +69,7 @@ while True:
 
     # Check if the file is a CSV
         if filename.endswith('.csv'):
+            print(filename)
             insert_data_from_csv(filename)
     except Exception as e:
         print(f"Error during file processing: {e}")
