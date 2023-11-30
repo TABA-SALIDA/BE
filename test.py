@@ -1,23 +1,33 @@
 import pyodbc
-#conn_str = 'DRIVER={Tibero 6 ODBC Driver};SERVER=localhost;PORT=8629;DATABASE=tibero;UID=sys;PWD=tibero;'
-
-conn_str = f"DSN=tibero6; UID=sys; PWD=tibero"
-db = pyodbc.connect(conn_str)
-
-cursor = db.cursor()
 
 
+DSN = 'tibero6'
+username = 'sys'
+password = 'tibero'
 
-cursor.execute('select * from all_users;')
+conn = pyodbc.connect(f'DSN={DSN};UID={username};PWD={password}')
 
+conn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-16')
+conn.setdecoding(pyodbc.SQL_WCHAR, encoding='utf-16')
+conn.setencoding(encoding='utf-8')
+
+cursor = conn.cursor()
+
+select_query = "select * from emergency_news"
+
+insert_query = '''
+INSERT INTO emergency_news
+VALUES(s_news_id.NEXTVAL, '기사 제목', '기사 내용', '기사 요약', '기사 링크', 'earthquack');
+'''
+cursor.execute(insert_query)
+conn.commit()
+
+cursor.execute(select_query)
 data = cursor.fetchall()
-
-
-
 for x in data:
 
     print (x[0]) 
 
 cursor.close()
 
-db.close()
+conn.close()

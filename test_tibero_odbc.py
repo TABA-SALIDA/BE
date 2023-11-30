@@ -3,31 +3,26 @@ import pyodbc
 
 sql = 'SELECT * FROM emergency_news;'
 
-print(1)
-#conn = pyodbc.connect('DSN=MYCODE; User=sys; Password=tibero')
+# 데이터베이스 연결
+conn = pyodbc.connect('DSN=tibero6;UID=sys;PWD=tibero;CHARSET=UTF8')
 
-db = pyodbc.connect('DSN=tibero6;UID=sys;PWD=tibero')
-print(2)
-#conn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-8')
-print(3)
-#conn.setdecoding(pyodbc.SQL_WCHAR, encoding='utf-8')
-print(4)
-#conn.setdecoding(pyodbc.SQL_WMETADATA, encoding='utf-32le')
-print(5)
-#conn.setencoding(encoding='utf-8')
+# 인코딩 설정
+conn.setdecoding(pyodbc.SQL_CHAR, encoding='utf-16')
+conn.setdecoding(pyodbc.SQL_WCHAR, encoding='utf-16')
+conn.setencoding(encoding='utf-8')
 
-print(6)
-cursor = db.cursor()
-row = cursor.execute(sql)
+
+cursor = conn.cursor()
+cursor.execute(sql)
     
 
 
 while True:
-    print('in True')
     row = cursor.fetchone()
     if not row:
         break
-    print(row)
+    fixed_row = [col.decode('utf-16le') if isinstance(col, bytes) else col for col in row]
+    print(fixed_row)
 
 conn.close()
 
