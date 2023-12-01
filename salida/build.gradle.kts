@@ -33,6 +33,10 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
+tasks.withType<JavaCompile>{
+	options.encoding = "UTF-8"
+}
+
 tasks.bootBuildImage {
 	builder.set("paketobuildpacks/builder-jammy-base:latest")
 }
