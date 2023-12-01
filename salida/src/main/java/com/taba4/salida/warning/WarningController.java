@@ -1,6 +1,7 @@
 package com.taba4.salida.warning;
 
 import com.taba4.salida.warning.dto.EqkDto;
+import com.taba4.salida.warning.dto.WarDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
@@ -31,9 +32,10 @@ class WarningController {
     }
 
     @PostMapping("/war")
-    public void warnWar(@RequestBody EqkDto warData) {
-
-        sseEmitters.warnEqk(warData);
+    public void warnWar(@RequestBody WarDto warData) {
+        log.info("new war data request");
+        log.info("data = {}", warData.getWarInfo());
+        sseEmitters.warnWar(warData);
     }
 
 
