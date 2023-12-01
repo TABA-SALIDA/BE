@@ -24,14 +24,14 @@ class WarningController {
         return sseEmitters.connect(emitter);
     }
 
-    @PostMapping(path = "/eqk", produces = "application/json;charset=utf-8")
+    @PostMapping(path = "/eqk")
     public void warnEqk(@RequestBody EqkDto eqkData) {
         log.info("new eqk data request");
         log.info("data = {}, {}, {}", eqkData.getLatitude(), eqkData.getLongitude(), eqkData.getMagnitude());
         sseEmitters.warnEqk(eqkData);
     }
 
-    @PostMapping("/war")
+    @PostMapping(path = "/war", produces = "application/json;charset=utf-8")
     public void warnWar(@RequestBody WarDto warData) {
         log.info("new war data request");
         log.info("data = {}", warData.getWarInfo());
