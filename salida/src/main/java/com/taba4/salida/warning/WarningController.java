@@ -24,7 +24,7 @@ class WarningController {
         return sseEmitters.connect(emitter);
     }
 
-    @PostMapping("/eqk")
+    @PostMapping(path = "/eqk", produces = "application/json;charset=utf-8")
     public void warnEqk(@RequestBody EqkDto eqkData) {
         log.info("new eqk data request");
         log.info("data = {}, {}, {}", eqkData.getLatitude(), eqkData.getLongitude(), eqkData.getMagnitude());
