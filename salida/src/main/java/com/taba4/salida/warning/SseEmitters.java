@@ -17,11 +17,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class SseEmitters {
     private final List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
 
-    public SseEmitter connect(SseEmitter emitter) {
+    public SseEmitter connect(SseEmitter emitter) throws IOException {
         this.emitters.add(emitter);
         log.info("new emitter connected: {}", emitter);
         log.info("emitters size: {}", emitters.size());
         log.info("emitter list: {}", emitters);
+
+        emitter.send(SseEmitter.event()
+                .name("connect")
+                .data("connected"));
 
         emitter.onCompletion(() -> {
             log.info("onCompletion callback");
