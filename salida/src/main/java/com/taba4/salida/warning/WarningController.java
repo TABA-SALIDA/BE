@@ -6,12 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import java.io.IOException;
+
 @Slf4j
 @RestController
 @RequestMapping("/warn")
 class WarningController {
 
     private final SseEmitters sseEmitters;
+    private static final Long TIMEOUT = 60L * 1000;
 
     WarningController(SseEmitters sseEmitters) {
 
@@ -19,8 +22,8 @@ class WarningController {
     }
 
     @GetMapping(value = "/connect", produces = "text/event-stream")
-    public SseEmitter connect() {                   //++ ResponseEntity 사용하기
-        SseEmitter emitter = new SseEmitter();      //++ timeout 설정하기
+    public SseEmitter connect() throws IOException {                   //++ ResponseEntity 사용하기
+        SseEmitter emitter = new SseEmitter(TIMEOUT);
         return sseEmitters.connect(emitter);
     }
 
