@@ -37,7 +37,7 @@ class WarningController {
     @PostMapping(path = "/war", produces = "application/json;charset=utf-8")
     public void warnWar(@RequestBody WarnDto warData) {
         log.info("new war data request");
-        log.info("data = {}", warData.getWarInfo());
+        log.info("data = {}", warData.getWarnInfo());
         sseEmitters.warnWar(warData);
     }
 
