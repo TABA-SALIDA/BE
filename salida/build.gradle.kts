@@ -28,6 +28,7 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation(files("libs/tibero6-jdbc.jar"))
 }
 
 tasks.withType<Test> {
