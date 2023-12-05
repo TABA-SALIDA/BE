@@ -1,7 +1,7 @@
 package com.taba4.salida.warning;
 
 import com.taba4.salida.warning.dto.EqkDto;
-import com.taba4.salida.warning.dto.WarDto;
+import com.taba4.salida.warning.dto.WarnDto;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
@@ -23,9 +23,10 @@ public class SseEmitters {
         log.info("emitters size: {}", emitters.size());
         log.info("emitter list: {}", emitters);
 
+        WarnDto dummy = new WarnDto("connected");
         emitter.send(SseEmitter.event()
                 .name("connect")
-                .data("connected"));
+                .data(dummy, MediaType.APPLICATION_JSON));
 
         emitter.onCompletion(() -> {
             log.info("onCompletion callback");
@@ -50,7 +51,7 @@ public class SseEmitters {
         });
     }
 
-    public void warnWar(WarDto warData) {
+    public void warnWar(WarnDto warData) {
         emitters.forEach(emitter -> {
             try {
                 emitter.send(SseEmitter.event()
