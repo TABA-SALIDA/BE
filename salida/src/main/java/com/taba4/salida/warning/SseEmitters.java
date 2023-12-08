@@ -30,8 +30,9 @@ public class SseEmitters {
 
         emitter.onCompletion(() -> {
             log.info("onCompletion callback");
+            emitter.complete();
             this.emitters.remove(emitter);
-            log.info("emitter list: {}", emitters);
+            log.info("emitters size: {}", emitters.size());
         });
         emitter.onTimeout(() -> {
             log.info("onTimeout callback");
