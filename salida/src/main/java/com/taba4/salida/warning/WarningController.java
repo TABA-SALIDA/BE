@@ -14,7 +14,7 @@ import java.io.IOException;
 class WarningController {
 
     private final SseEmitters sseEmitters;
-    private static final Long TIMEOUT = 10L * 1000;
+    private static final Long TIMEOUT = 2L * 1000;
 
     WarningController(SseEmitters sseEmitters) {
 
