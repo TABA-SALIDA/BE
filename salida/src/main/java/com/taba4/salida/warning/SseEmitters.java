@@ -47,7 +47,7 @@ public class SseEmitters {
                 emitter.send(SseEmitter.event()
                         .name("earthquake")
                         .data(eqkData, MediaType.APPLICATION_JSON));
-            } catch (IOException e) {
+            } catch (IOException | IllegalStateException e) {
                 emitters.remove(emitter);
             }
         });
@@ -59,7 +59,7 @@ public class SseEmitters {
                 emitter.send(SseEmitter.event()
                         .name("war")
                         .data(warData, MediaType.APPLICATION_JSON));
-            } catch (IOException e) {
+            } catch (IOException | IllegalStateException e) {
                 emitters.remove(emitter);
             }
         });
