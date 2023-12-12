@@ -49,6 +49,8 @@ public class SseEmitters {
                         .data(eqkData, MediaType.APPLICATION_JSON));
             } catch (IOException e) {
                 throw new RuntimeException();
+            } catch (IllegalStateException e) {
+                emitters.remove(emitter);
             }
         });
     }
@@ -61,6 +63,8 @@ public class SseEmitters {
                         .data(warData, MediaType.APPLICATION_JSON));
             } catch (IOException e) {
                 throw new RuntimeException();
+            } catch (IllegalStateException e) {
+                emitters.remove(emitter);
             }
         });
     }
