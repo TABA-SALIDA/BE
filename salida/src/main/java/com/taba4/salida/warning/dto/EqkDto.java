@@ -9,4 +9,5 @@ public class EqkDto {
     private double latitude;
     private double longitude;
     private double magnitude;
+    private String address;
 }
