@@ -14,7 +14,7 @@ import java.io.IOException;
 class WarningController {
 
     private final SseEmitters sseEmitters;
-    private static final Long TIMEOUT = 1800L * 1000;
+    private static final Long TIMEOUT = 600L * 1000;
 
     WarningController(SseEmitters sseEmitters) {
 
@@ -27,10 +27,10 @@ class WarningController {
         return sseEmitters.connect(emitter);
     }
 
-    @PostMapping(path = "/eqk")
+    @PostMapping(path = "/eqk", produces = "application/json;charset=utf-8")
     public void warnEqk(@RequestBody EqkDto eqkData) {
         log.info("new eqk data request");
-        log.info("data = {}, {}, {}", eqkData.getLatitude(), eqkData.getLongitude(), eqkData.getMagnitude());
+        log.info("data = {}, {}, {}, {}", eqkData.getLatitude(), eqkData.getLongitude(), eqkData.getMagnitude(), eqkData.getAddress());
         sseEmitters.warnEqk(eqkData);
     }
 
